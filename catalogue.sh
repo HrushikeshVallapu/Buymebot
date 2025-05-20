@@ -40,7 +40,7 @@ validate $? "enabling nodejs:20"
 dnf install nodejs -y &>>$log_file
 validate $? "installing nodejs:20"
 
-id roboshop
+id roboshop &>>$log_file
 if [ $? != 0 ]
 then 
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
@@ -55,7 +55,9 @@ validate $? "making home dirctry for user"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$log_file
 validate $? "downloading catalogue zip file"
 
-cd /app &>>$log_file
+
+rm -rf /app/*
+cd /app
 unzip /tmp/catalogue.zip &>>$log_file
 validate $? "unzipping catalogue"
 
