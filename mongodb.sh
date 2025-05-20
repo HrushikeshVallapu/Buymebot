@@ -8,7 +8,6 @@ n="\e[0m"
 logs_folder="var/log/buymebot-logs"
 script_name=$(echo $0 | cut -d "." -f1)
 log_file="$logs_folder/$script_name.log"
-packages=("mysql" "nginx" "python3" "httpd")
 
 mkdir -p $logs_folder
 echo "script started executing at $(date)" | tee -a $log_file
