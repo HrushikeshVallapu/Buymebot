@@ -5,7 +5,7 @@ r="\e[31m"
 g="\e[32m"
 y="\e[33m"
 n="\e[0m"
-logs_folder="var/log/buymebot-logs"
+logs_folder="/var/log/buymebot-logs"
 script_name=$(echo $0 | cut -d "." -f1)
 log_file="$logs_folder/$script_name.log"
 script_dir=$PWD
@@ -24,9 +24,9 @@ fi
 validate(){
     if [ $1 -eq 0 ]
     then 
-        echo -e "$g installation of $2 success $n" | tee -a $log_file
+        echo -e "$g  $2 success $n" | tee -a $log_file
     else   
-        echo -e "$r installation of $2 failed $n" | tee -a $log_file
+        echo -e "$r  $2 failed $n" | tee -a $log_file
         exit 1
     fi
 }
@@ -40,9 +40,13 @@ validate $? "enabling nodejs:20"
 dnf install nodejs -y &>>$log_file
 validate $? "installing nodejs:20"
 
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-validate $? "creating systemuser"
-
+id roboshop
+if [ $? != 0]
+then 
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+    validate $? "creating systemuser"
+else
+    validate $? " 
 mkdir -p /app &>>$log_file
 validate $? "making home dirctry for user"
 

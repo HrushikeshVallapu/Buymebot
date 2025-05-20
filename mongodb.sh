@@ -5,7 +5,7 @@ r="\e[31m"
 g="\e[32m"
 y="\e[33m"
 n="\e[0m"
-logs_folder="var/log/buymebot-logs"
+logs_folder="/var/log/buymebot-logs"
 script_name=$(echo $0 | cut -d "." -f1)
 log_file="$logs_folder/$script_name.log"
 
