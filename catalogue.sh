@@ -74,5 +74,5 @@ cp $script_dir/mongodb.repo /etc/yum.repos.d/mongo.repo
 dnf install mongodb-mongosh -y &>>$log_file
 validate $? "installing mongoDB client "
 
-mongosh --host mongodb.buymebot.sh </app/db/master-data.js &>>$log_file
+mongosh --host mongodb.buymebot.shop </app/db/master-data.js &>>$log_file
 validate $? "loading master data into mongo"
