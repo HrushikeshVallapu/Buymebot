@@ -57,7 +57,7 @@ validate $? "unzipping frontend"
 rm -rf /etc/nginx/nginx.conf &>>$log_file
 validate $? "remove default nginx.conf"
 
-cp $script_dir/nginx.conf
+cp $script_dir/nginx.conf /etc/nginx/nginx.conf
 validate $? "copying nginx.conf"
 
 systemctl restart nginx 
