@@ -76,5 +76,11 @@ cp $script_dir/mongodb.repo /etc/yum.repos.d/mongo.repo
 dnf install mongodb-mongosh -y &>>$log_file
 validate $? "installing mongoDB client "
 
-mongosh --host mongodb.buymebot.shop </app/db/master-data.js &>>$log_file
-validate $? "loading master data into mongo"
+STATUS=$(mongosh --host mongodb.daws84s.site --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
+if [ $STATUS -lt 0 ]
+then 
+    mongosh --host mongodb.buymebot.shop </app/db/master-data.js &>>$log_file
+    validate $? "loading master data into mongo"
+else 
+    echo -e "$g data is already loaded $n"
+fi
