@@ -78,7 +78,7 @@ validate $? "starting shipping"
 dnf install mysql -y &>>$log_file
 validate $? "installing mysql"
 
-mysql -h mysql.buymebot.shop -u root -p$mysql_root_password -e 'use cities'
+mysql -h mysql.buymebot.shop -u root -p$mysql_root_password -e 'use cities' &>>$log_file
 if [ $? != 0 ]
 then 
     mysql -h mysql.buymebot.shop -uroot -p$mysql_root_password < /app/db/schema.sql &>>$log_file
