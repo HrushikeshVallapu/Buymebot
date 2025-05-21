@@ -74,9 +74,6 @@ systemctl enable user &>>$log_file
 systemctl start user
 validate $? "starting user"
 
-cp $script_dir/mongodb.repo /etc/yum.repos.d/mongo.repo
-dnf install mongodb-mongosh -y &>>$log_file
-validate $? "installing mongoDB client "
 
 end_time=$(date +%s)
 total_time=$(($end_time - $start_time))
