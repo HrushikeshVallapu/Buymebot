@@ -48,8 +48,8 @@ validate $? "enabling rabbitmq"
 systemctl start rabbitmq-server &>>$log_file
 validate $? "starting rabbitmq"
 
-rabbitmqctl add_user roboshop $rabbitmq_password
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+rabbitmqctl add_user roboshop $rabbitmq_password &>>$log_file
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$log_file
 
 end_time=$(date +%s)
 total_time=$(($end_time - $start_time))
