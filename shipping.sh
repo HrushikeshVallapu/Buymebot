@@ -68,12 +68,12 @@ mv target/shipping-1.0.jar shipping.jar &>>$log_file
 validate $? "moving and renaming jar file"
 
 cp $script_dir/shipping.service /etc/systemd/system/shipping.service
-validate $? "copying user service"
+validate $? "copying shipping service"
 
 systemctl daemon-reload &>>$log_file
-systemctl enable user &>>$log_file
-systemctl start user 
-validate $? "starting user"
+systemctl enable shipping &>>$log_file
+systemctl start shipping 
+validate $? "starting shipping"
 
 dnf install mysql -y &>>$log_file
 validate $? "installing mysql"
