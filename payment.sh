@@ -23,8 +23,7 @@ else
     echo "preparing to start the installation" | tee -a $log_file
 fi
 
-echo "please enter root password to setup"
-read -s mysql_root_password
+
 
 validate(){
     if [ $1 -eq 0 ]
