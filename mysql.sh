@@ -48,6 +48,7 @@ mysql_secure_installation --set-root-pass $mysql_root_password
 validate $? "setting root password"
 
 
+
 end_time=$(date +%s)
 total_time=$(($end_time - $start_time))
 
