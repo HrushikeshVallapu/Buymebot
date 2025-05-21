@@ -35,7 +35,7 @@ validate(){
     fi
 }
 
-dnf install python3 gcc python3-devel -y
+dnf install python3 gcc python3-devel -y &>>$log_file
 validate $? "installing python3"
 
 
