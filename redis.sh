@@ -1,5 +1,6 @@
 #!/bin/bash
 
+start_time=$(date +%s)
 userid=$(id -u)
 r="\e[31m"
 g="\e[32m"
@@ -42,9 +43,15 @@ validate $? "installing redis:7"
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis/redis.conf
 validate $? "updating listen address"
 
-sed -i 's/^[[:space:]]*protected-mode yes/protected-mode no/g' /etc/redis/redis.conf
+#sed -i 's/^[[:space:]]*protected-mode yes/protected-mode no/g' /etc/redis/redis.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc/redis/redis.conf
 validate $? "updating protected mode"
 
 systemctl enable redis &>>$log_file
 systemctl start redis 
 validate $? "starting redis"
+
+end_time=$(date +%s)
+total_time=$(($start_time - $end_time))
+
+echo -e "script execution completely, $y time taken : $total_time seconds $n" | tee -a $log_file
